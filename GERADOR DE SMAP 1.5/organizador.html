@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizador de Dados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+        }
+        button {
+            margin-top: 10px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Organizador de Dados</h1>
+    <textarea id="inputData" placeholder="Cole aqui os dados embaralhados..."></textarea>
+    <button onclick="organizeData()">Organizar Dados</button>
+    <h2>Dados Organizados:</h2>
+    <pre id="outputData"></pre>
+
+    <script>
+        function organizeData() {
+            const inputData = document.getElementById('inputData').value;
+            const lines = inputData.split('\n');
+            const organizedData = lines.map(line => {
+                const msisdn = line.match(/^\+\d+/)[0];
+                const iccid = line.match(/89\d{18}/)[0];
+                const imsi = line.match(/72\d{13}/)[0];
+                return `${msisdn} | ${iccid} | ${imsi}`;
+            }).join('\n');
+            document.getElementById('outputData').textContent = organizedData;
+        }
+    </script>
+</body>
+</html>

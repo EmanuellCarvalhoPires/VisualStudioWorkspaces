@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerar Chamado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: white;
+            background-color: #3e4451;
+            margin: 20px;
+            width: 50%;
+            margin: 0 auto;
+        }
+        #form-container {
+            background-color: #1e2136;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid white;
+        }
+        #massive_input{
+            width: 80%;
+            height: 200px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin: 10px 0 5px;
+        }
+        #descricao_problema2 {
+            height: 100px;
+        }
+        input, select, textarea {
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            background-color: #1e2136;
+            padding: 15px;
+            border: 1px solid white;
+            border-radius: 10px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="form-container">
+        <h1>Gerar Chamado</h1>
+        <form id="form" onsubmit="return generateReport(event)">
+            <label for="situacao">Escolha uma das opções:</label>
+            <select id="situacao" name="situacao" required>
+                <option value="">Selecione</option>
+                <option value="1">PORTABILIDADE CONFLITANDO NO PORTAL</option>
+                <option value="2">REALIZAR SWAP DA LINHA</option>
+                <option value="3">LINHA SUMIU DO PORTAL</option>
+                <option value="4">-</option>
+                <option value="5">LIMPAR BP DAS LINHAS</option>
+                <option value="6">-</option>
+                <option value="7">-</option>
+                <option value="8">-</option>
+                <option value="9">-</option>
+                <option value="10">OUTROS</option>
+            </select>
+
+            <label for="num_ticket">Número do ticket:</label>
+            <input type="number" id="num_ticket" name="num_ticket">
+
+            <label for="MVNO">MVNO:</label>
+            <input type="text" id="MVNO" name="MVNO">
+
+            <div id="outros-options" style="display: none;">
+                <label for="descricao_problema">Descreva a situação para inserir no título:</label>
+                <input type="text" id="descricao_problema" name="descricao_problema">
+            </div>
+
+            <label for="descricao_problema2">Descreva o problema que será resolvido pelo TI:</label>
+            <textarea id="descricao_problema2" name="descricao_problema2">Prezados</textarea>
+
+            <label for="nome">Nome do cliente:</label>
+            <input type="text" id="nome" name="nome">   
+
+            <label for="documento">Documento do cliente:</label>
+            <input type="text" id="documento" name="documento">
+            <br>
+            <label for="massive_incident">
+                <input type="checkbox" id="massive_incident" name="massive_incident" onclick="toggleMassiveIncidentFields()">
+                É um incidente massivo?
+            </label>
+            <br>
+            <div id="individual_fields">
+                <label for="ICCID">ICCID:</label>
+                <input type="text" id="ICCID" name="ICCID">
+
+                <label for="IMSI">IMSI:</label>
+                <input type="text" id="IMSI" name="IMSI">
+                <br>
+                
+                <p>------------------------------------------------------------</p>
+                <label for="msisdn_options">
+                    <input type="checkbox" id="msisdn_options" name="msisdn_options" onclick="toggleMsisdnFields()">
+                    Deseja inserir MSISDN PORTADO e PROVISÓRIO?
+                </label>
+                <br>
+                <br>
+                <div id="msisdn_fields" class="hidden">
+                    <label for="MSISDN">MSISDN PORTADO:</label>
+                    <input type="text" id="MSISDN" name="MSISDN">
+                    
+                    <label for="MSISDN_TEMP">MSISDN Provisório:</label>
+                    <input type="text" id="MSISDN_TEMP" name="MSISDN_TEMP">
+                </div>
+
+                <div id="msisdn_normal_field">
+                    <label for="MSISDN_NORMAL">MSISDN:</label>
+                    <input type="text" id="MSISDN_NORMAL" name="MSISDN_NORMAL">
+                </div>
+            </div>
+
+            <div id="massive_incident_field" class="hidden">
+                <label for="massive_input">Insira ICCID, IMSI e MSISDN:</label><br><br>
+                <textarea id="massive_input" name="massive_input"></textarea>
+            </div>
+
+            <button type="submit">Gerar Chamado</button>
+        </form>
+    </div>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('situacao').addEventListener('change', function() {
+            const situacao = this.value;
+            const outrosOptions = document.getElementById('outros-options');
+            if (situacao === '10') {
+                outrosOptions.style.display = 'block';
+            } else {
+                outrosOptions.style.display = 'none';
+            }
+        });
+
+        function toggleMsisdnFields() {
+            const checkbox = document.getElementById('msisdn_options');
+            const msisdnFields = document.getElementById('msisdn_fields');
+            const msisdnNormalField = document.getElementById('msisdn_normal_field');
+
+            if (checkbox.checked) {
+                msisdnFields.classList.remove('hidden');
+                msisdnNormalField.classList.add('hidden');
+            } else {
+                msisdnFields.classList.add('hidden');
+                msisdnNormalField.classList.remove('hidden');
+            }
+        }
+
+        function toggleMassiveIncidentFields() {
+            const massiveIncidentCheckbox = document.getElementById('massive_incident');
+            const individualFields = document.getElementById('individual_fields');
+            const massiveIncidentField = document.getElementById('massive_incident_field');
+
+            if (massiveIncidentCheckbox.checked) {
+                individualFields.classList.add('hidden');
+                massiveIncidentField.classList.remove('hidden');
+            } else {
+                individualFields.classList.remove('hidden');
+                massiveIncidentField.classList.add('hidden');
+            }
+        }
+
+        function generateReport(event) {
+            event.preventDefault();
+            const situacao = document.getElementById('situacao').value;
+            const numTicket = document.getElementById('num_ticket').value;
+            const MVNO = document.getElementById('MVNO').value;
+            const descricaoProblema = situacao === '10' ? document.getElementById('descricao_problema').value : 
+                situacao === '1' ? "PORTABILIDADE CONFLITANDO NO PORTAL" :
+                situacao === '2' ? "REALIZAR SWAP DA LINHA" : 
+                situacao === '3' ? "LINHA SUMIU DO PORTAL" :
+                situacao === '4' ? "RECLAMAÇÃO DE SERVIÇO" :
+                situacao === '5' ? "LIMPAR BP DAS LINHAS" :
+                situacao === '6' ? "SUPORTE TÉCNICO" :
+                situacao === '7' ? "SOLICITAÇÃO DE SERVIÇO" :
+                situacao === '8' ? "CANCELAMENTO DE LINHA" :
+                situacao === '9' ? "MIGRAÇÃO DE PLANO" : '';
+            let descricaoProblema2 = document.getElementById('descricao_problema2').value;
+            descricaoProblema2 = descricaoProblema2.replace(/\n/g, '<br>'); // Adiciona essa linha para manter as quebras de linha
+            const nome = document.getElementById('nome').value;
+            const documento = document.getElementById('documento').value;
+            
+            let resultHTML = '<h2>Resultado do Chamado</h2>';
+            resultHTML += `<p>${numTicket} | ${MVNO} | ${descricaoProblema}</p>`;
+            resultHTML += '<p>------------------------------------------------------------</p>';
+            resultHTML += `<p>${descricaoProblema2 ? descricaoProblema2 : ''}</p>`;
+            resultHTML += `<p><br></p>`;
+            resultHTML += `<p>Nome: ${nome}</p>`;
+            resultHTML += `<p>Documento: ${documento}</p>`;
+            
+            const massiveIncidentCheckbox = document.getElementById('massive_incident');
+
+            if (massiveIncidentCheckbox.checked) {
+                const massiveInput = document.getElementById('massive_input').value.replace(/\n/g, '<br>'); // Aqui também
+                resultHTML += `<p><br> ${massiveInput}</p>`;
+            } else {
+                const ICCID = document.getElementById('ICCID').value;
+                const IMSI = document.getElementById('IMSI').value;
+                const msisdnNormal = document.getElementById('MSISDN_NORMAL').value;
+                const MSISDN = document.getElementById('MSISDN').value;
+                const MSISDN_TEMP = document.getElementById('MSISDN_TEMP').value;
+
+                resultHTML += `<p>ICCID: ${ICCID}</p>`;
+                resultHTML += `<p>IMSI: ${IMSI}</p>`;
+                if (document.getElementById('msisdn_options').checked) {
+                    resultHTML += `${MSISDN ? `<p>MSISDN PORTADO: ${MSISDN}</p>` : ''}`;
+                    resultHTML += `${MSISDN_TEMP ? `<p>MSISDN PROVISÓRIO: ${MSISDN_TEMP}</p>` : ''}`;
+                } else {
+                    resultHTML += `${msisdnNormal ? `<p>MSISDN: ${msisdnNormal}</p>` : ''}`;
+                }
+            }
+
+            document.getElementById('result').innerHTML = resultHTML;
+        }
+    </script>
+</body>
+</html>
