@@ -12,12 +12,15 @@ h2{
 
 #DivALL{
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 #formulario{
     display: flex;
-    width: 50%;
+    flex-direction: column;
+    width: 38%;
     padding: 30px;
     background-color: #1e2136;
     border: solid 1px white;
@@ -26,7 +29,26 @@ h2{
 
 /* STYLE DE ID ESPECÍFICOS */
 
-#tituloDropdown{
-    width: 180px;
 
+/* STYLES DE CLASS */
+
+.dropdown-item{
+    cursor:pointer;
+    
+}
+
+.dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 220px; /* Adjust the width as needed */
+}
+.dropdown-toggle::after {
+    margin-left: auto; /* Ensures arrow stays on the far right */
+}
+
+/* CLASS CHECKBOX */
+
+.list-group{
+    width: 500px;
 }
