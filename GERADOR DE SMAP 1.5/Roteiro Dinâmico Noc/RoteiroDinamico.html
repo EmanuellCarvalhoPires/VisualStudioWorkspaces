@@ -20,14 +20,16 @@
                 <div id="DivMSISDN">
                     
                     <h4>Dados iniciais obrigatórios</h4><br>
-                    <label>Qual a linha que está com falha? <br><input type="text" id="LinhaComFalha" style="border-radius: 5px;" required ></label>  <br>
+                    <label>Qual a linha que está com falha? <br><input type="text" id="LinhaComFalha" style="border-radius: 5px;" required ></label><br>
                     <label>Qual o ICCID dessa linha? <br><input type="text" id="ICCID" style="border-radius: 5px;" required ></label><br>
-                    <label>Qual o nome do cliente? <br><input type="text" id="LinhaComFalha" style="border-radius: 5px;" required ></label> <br>   
+                    <label>Qual o nome do cliente? <br><input type="text" id="NomeCliente" style="border-radius: 5px;" required ></label> <br>   
                 </div>  
                 
                 <hr style="opacity: 0.5;">
 
                 <div class="dropdown">
+                    
+                    <h4></h4>
                     <label>Qual o tipo do ticket?</label><br>
                     <a class="btn btn-light  dropdown-toggle"  id="tituloDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Tipo do Ticket
@@ -74,26 +76,57 @@
                                         <div style="display: flex; flex-direction:row; padding-left: 24px;">
                                             <div style="padding-right: 30px;"><input class="form-check-input" type="checkbox" value="" id="ch1" onclick="NumeroEspecifico('sim')" />Sim</input></div>
                                             
-                                            <div><input class="form-check-input" type="checkbox" value="" id="ch2" onclick="NumeroEspecifico('nao')" checked/>Não</input></div>
+                                            <div><input class="form-check-input" type="checkbox" value="" id="ch2" onclick="NumeroEspecifico('nao')"/>Não</input></div>
 
                                         </div>
                                     <div id="NumEspecifico" style="display: none;">
                                         <br>
-                                        <label>Qual número que a linha não consegue receber chamadas?</label><br>
+                                        <label>Qual número que a linha do cliente não consegue receber chamadas?</label><br>
                                         <input type="text" style="border-radius: 5px;" id="LinhaQueNaoRecebe">
                                     </div>
 
                                 </div>
-
-                                <hr style="opacity: 0.5;">
                         
                             </div>
-                            <div class="">
+
+                            <div id="PerguntaPortabilidade" style="display: none;">
+                                    <hr style="opacity: 0.5;">
+                                    <label>A linha do cliente é portada?</label><br>
+
+                                    <div style="padding-right: 30px;"><input class="form-check-input" type="checkbox" value="" id="Pr1" onclick="LinhaPortada('sim')" />Sim</input></div>
+                                            
+                                    <div><input class="form-check-input" type="checkbox" value="" id="Pr2" onclick="LinhaPortada('nao')"/>Não</input></div>
+
+                                    <div id="respostaLinhaPortSIM" style="display: none;">
+                                        <br>
+                                        <label>A data da solicitação da portabilidade é inferior à 3 dias?</label>
+
+                                        <div style="padding-right: 30px;"><input class="form-check-input" type="checkbox" value="" id="Inf1" onclick="InferiorA3dias('sim')" />Sim</input></div>
+                                            
+                                        <div><input class="form-check-input" type="checkbox" value="" id="Inf2" onclick="InferiorA3dias('nao')"/>Não</input></div>
+
+                                        
+                                    </div>
+                                    <div id="respostaPortRecentSIM" style="display: none;">
+
+                                        <label><br>Você deve aguardar a Janela de portabilidade ser concluída para poder realizar a abertura de um ticket!<br></label>
+
+                                    </div>
                                     
+                                    
+                                    
+                                    <hr style="opacity: 0.5;">
+                            </div>
+
+
+                            <div class="" id="DivDosTestes" style="display: none;">
+                                <div style="margin-bottom: 20px;">
                                     Foram realizados testes?<br>
                                     <input class="form-check-input" type="checkbox" value="" id="testesSim" onclick="testes('sim')"/>  Sim </input>
                                     <input class="form-check-input" type="checkbox" value="" id="testesNao" onclick="testes('nao')"/>  Não </input>
-                                </div><br>
+                                    <label style="margin-top: 10px;">Clique aqui para adicionar mais testes: <a class="btn btn-light btn-sm " role="button" onclick="testesVoz()">Adicionar</a></label>
+                                </div> 
+                                
                                 <div id="TestesRealizados" style="display: none; ">
                                     
                                     <label>Teste 1</label><br>
@@ -104,7 +137,8 @@
                                     -----------------------------------------------
 
                                 </div>
-                                <br><label>Clique aqui para adicionar mais testes: <a class="btn btn-light btn-sm " role="button" onclick="testesVoz()">Adicionar</a></label>
+                            </div>
+                                
                     </div>
                     
                     <!--VOZ - NÃO ORIGINA -->
@@ -249,18 +283,25 @@
         }
         
     //Funções das Checkboxes
-
-        const numespec = "";
+        
+        let valorDoNumEspecifico;
+        let numespec = "";
         function NumeroEspecifico(opcao){
             if(opcao == 'sim'){
                 document.getElementById("NumEspecifico").style.display = 'block';
+                document.getElementById("DivDosTestes").style.display = 'block';
+                document.getElementById("PerguntaPortabilidade").style.display = 'block';
+
                 document.getElementById("ch2").checked = false;
-                const LinhaQueNãoRecebe = document.getElementById("LinhaQueNaoRecebe");
+
                 numespec = "Sim";
 
 
             }else if(opcao == 'nao'){
                 document.getElementById("NumEspecifico").style.display = 'none';
+                document.getElementById("DivDosTestes").style.display = 'block';
+                document.getElementById("PerguntaPortabilidade").style.display = 'block';
+            
                 document.getElementById("ch1").checked = false;
                 numespec = "Não";
             }
@@ -268,18 +309,52 @@
             
 
         }
+        // FUNCTIONS LINHA PORTADA
+        let linhaportada;
+        let linhaportouInf3Dias;
+        function LinhaPortada(opcao){
+            if(opcao == 'sim'){
+                document.getElementById("respostaLinhaPortSIM").style.display = 'block';
+                linhaportada = "Sim";
+                
+                document.getElementById("Pr2").checked = false;
+        
+            }else if(opcao == 'nao'){
+                
+                document.getElementById("Pr1").checked = false;
+                linhaportada = "Não"
+                
+            }
+        }
+
+                //FUNCTION PARA DIZER SE A SOLICITAÇÃO DA PORTABILIDADE FOI FEITA HÁ MENOS DE 3 DIAS
+ 
+                function InferiorA3dias(opcao){
+                    if(opcao == 'sim'){
+                        document.getElementById("respostaPortRecentSIM").style.display = 'block';
+            
+                        linhaportouInf3Dias = "Sim"
+                        document.getElementById("Inf2").checked = false;
+                
+                    }else if(opcao == 'nao'){
+                        
+                        linhaportouInf3Dias = "Não"
+                        document.getElementById("Inf1").checked = false;
+                    }
+                }
+
+        //FUNCTION DE TESTES
 
         function testes(opcao){
             if(opcao == 'sim'){
                 document.getElementById("TestesRealizados").style.display = 'block';
                 document.getElementById("testeNao").checked = false;
                 const dataHora = document.getElementById("DataHoraTestes");
-
-
+                
             }else if(opcao == 'nao'){
                 document.getElementById("TestesRealizados").style.display = 'none';
                 document.getElementById("testeSim").checked = false;
-                numespec = "Não";
+            
             }
             
             
@@ -297,7 +372,7 @@
                             <label>Teste ${i + 1}</label><br>
                             Origem: <input type="text" id="testeOrigem${i}" style="border-radius: 5px; margin-bottom: 5px ;"><br>
                             Destino: <input type="text" id="testeDestino${i}" style="border-radius: 5px;"><br>
-                            Data/hora dos testes: <input type="datetime-local" name="" id="DataHoraTestes"><br><br>
+                            Data/hora dos testes: <input type="datetime-local" name="" id="DataHoraTestes${i}"><br><br>
                             -----------------------------------------------
                             </div>`
             document.getElementById('TestesRealizados').innerHTML += novoteste;
@@ -312,6 +387,7 @@
         function gerarTexto() {
     const linha = document.getElementById("LinhaComFalha").value;
     const ICCID = document.getElementById("ICCID").value;
+    const nomeCli = document.getElementById("NomeCliente").value;
 
     // Limpa o array antes de preenchê-lo novamente
     todosOsTestes = [];
@@ -320,41 +396,68 @@
     for (let j = 1; j < i; j++) {
         let linhaOrig = document.getElementById(`testeOrigem${j}`).value || 'Não informado';
         let linhaDest = document.getElementById(`testeDestino${j}`).value || 'Não informado';
+        let DataHoraTeste1 = document.getElementById(`DataHoraTestes${j}`).value || "Não informado";
+        let DataHoraTeste = DataHoraTeste1.replace("T"," ")
         let formatTeste = `Teste ${j + 1}
 ORIGEM: ${linhaOrig}
 DESTINO: ${linhaDest}
+DATA/HORA: ${DataHoraTeste}
 `;
         todosOsTestes.push(formatTeste);
     }
 
+
+    let DataHoraTestes1 = document.getElementById("DataHoraTestes").value || "Não informado"
     let TESTEORIGEM = document.getElementById(`testeOrigem`).value || 'Não informado';
     let TESTEDESTINO = document.getElementById(`testeDestino`).value || 'Não informado';
-
+    let DataHoraTestes = DataHoraTestes1.replace("T"," ");
+    const LinhaQueNãoRecebe = document.getElementById("LinhaQueNaoRecebe").value;
+    valorDoNumEspecifico = LinhaQueNãoRecebe;
+    
+    
     const textoPronto = `
 A dificuldade ocorre em Local Específico?
+
 Preencha os Dados abaixo:
-Nome do contato para realização de testes:
+
+Nome do contato para realização de testes: ${nomeCli}
+
+MSISDN: ${linha}
+ICCID: ${ICCID}
+
+A Linha não recebe ligações de número específico? ${numespec}
+
+Se sim, qual a linha que não recebe: ${valorDoNumEspecifico}
+
 Endereço da falha - Rua/Av/Trav: 
+
 Data início do problema:
+
 Dificuldade ocorre em local fechado (dentro da casa) ou externo (rua, parque): Ambos
+
 Informar mensagem de erro (voz ou texto):
+
 Data e Hora dos testes realizados no local de reclamação:
+
 Encontra-se no local?: Sim
+
 Selecione as redes em que os testes foram realizados:
 2G (  )  3G  (  )  4G  ( )
+
 Foi testado o chip em outro aparelho? (  ) Não (  ) Sim. Qual o resultado do teste?
+
 Há outra linha com a mesma dificuldade na localidade reclamada? Não
-ICCID: ${ICCID}
-MSISDN: ${linha}
+
 Marca e modelo do aparelho: 
+
 -Testes realizados-
 
 Teste 1
 ORIGEM: ${TESTEORIGEM}
 DESTINO: ${TESTEDESTINO}
+DATA/HORA: ${DataHoraTestes}
 
 ${todosOsTestes.map((element) => `${element}`).join('\n')}
-
 
 Informações adicionais que achar necessário: `;
 

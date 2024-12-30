@@ -52,3 +52,15 @@ h2{
 .list-group{
     width: 500px;
 }
+
+#DivALL {
+    padding: 20px;
+}
+
+.form-check {
+    padding: 0px;
+}
+
+.form-check-input {
+    margin-right: 5px;
+}
