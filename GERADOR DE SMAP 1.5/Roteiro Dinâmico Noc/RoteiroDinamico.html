@@ -65,32 +65,12 @@
                     <!--VOZ - NÃO RECEBE -->
                     <div id="ContainerNaoRecebe" class="VozCases" style="display: none;">
                             <br>
-                            <hr style="opacity: 0.5;">
+
                             
-                            <!--Número específico-->
-                            <div id="checkboxes">
-                                <div class="form-check" style="padding: 0px;">
-                                    
-                                    A linha não está recebendo de um número específico?</p> 
-                                        
-                                        <div style="display: flex; flex-direction:row; padding-left: 24px;">
-                                            <div style="padding-right: 30px;"><input class="form-check-input" type="checkbox" value="" id="ch1" onclick="NumeroEspecifico('sim')" />Sim</input></div>
-                                            
-                                            <div><input class="form-check-input" type="checkbox" value="" id="ch2" onclick="NumeroEspecifico('nao')"/>Não</input></div>
+                            <!--PERGUNTA PORTABILIDADE-->
 
-                                        </div>
-                                    <div id="NumEspecifico" style="display: none;">
-                                        <br>
-                                        <label>Qual número que a linha do cliente não consegue receber chamadas?</label><br>
-                                        <input type="text" style="border-radius: 5px;" id="LinhaQueNaoRecebe">
-                                    </div>
-
-                                </div>
-                        
-                            </div>
-
-                            <div id="PerguntaPortabilidade" style="display: none;">
-                                    <hr style="opacity: 0.5;">
+                            <div id="PerguntaPortabilidade" style="display: block;">
+                                    <hr class="HRs" style="display: block; opacity: 0.5;">
                                     <label>A linha do cliente é portada?</label><br>
 
                                     <div style="padding-right: 30px;"><input class="form-check-input" type="checkbox" value="" id="Pr1" onclick="LinhaPortada('sim')" />Sim</input></div>
@@ -115,15 +95,39 @@
                                     
                                     
                                     
-                                    <hr style="opacity: 0.5;">
+                                    <hr class="HRs" style="display: block; opacity: 0.5;">
                             </div>
 
+                            <!--Número específico-->
+                            <div id="checkboxes" style="display: none;">
+                                <div class="form-check" style="padding: 0px;">
+                                    
+                                    A linha não está recebendo de um número?</p> 
+                                        
+                                        <div style="display: flex; flex-direction:row; padding-left: 24px;">
+                                            <div style="padding-right: 30px;"><input class="form-check-input" type="checkbox" value="" id="ch1" onclick="NumeroEspecifico('sim')" />Sim</input></div>
+                                            
+                                            <div><input class="form-check-input" type="checkbox" value="" id="ch2" onclick="NumeroEspecifico('nao')"/>Não</input></div>
+
+                                        </div>
+                                    <div id="NumEspecifico" style="display: none;">
+                                        <br>
+                                        <label>Qual número que a linha do cliente não consegue receber chamadas?</label><br>
+                                        <input type="text" style="border-radius: 5px;" id="LinhaQueNaoRecebe" onchange="alertarValor()">
+                                    </div>
+
+                                </div>
+                                <hr class="HRs" style="display: block; opacity: 0.5;">
+
+                            </div>
+
+                            <!--TESTES INFORMADOS PELA MVNO-->
 
                             <div class="" id="DivDosTestes" style="display: none;">
                                 <div style="margin-bottom: 20px;">
                                     Foram realizados testes?<br>
-                                    <input class="form-check-input" type="checkbox" value="" id="testesSim" onclick="testes('sim')"/>  Sim </input>
-                                    <input class="form-check-input" type="checkbox" value="" id="testesNao" onclick="testes('nao')"/>  Não </input>
+                                    <input class="form-check-input" type="checkbox" id="testesSim" onclick="testes('sim')"/>  Sim </input>
+                                    <input class="form-check-input" type="checkbox" id="testesNao" onclick="testes('nao')"/>  Não </input><br><br>
                                     <label style="margin-top: 10px;">Clique aqui para adicionar mais testes: <a class="btn btn-light btn-sm " role="button" onclick="testesVoz()">Adicionar</a></label>
                                 </div> 
                                 
@@ -179,7 +183,7 @@
             <div id="ContainerAPI" style="display: none;">
                 C
             </div>    
-            <hr style="opacity: 0.5;">
+            <hr style="display: block; opacity: 0.5;">
             <button class="btn btn-light" type="button" style="width: 120px; border-radius: 5px; padding: 5px; margin-top: 10px;" onclick="gerarTexto()">Gerar Mascara</button>
             
 
@@ -284,26 +288,37 @@
         
     //Funções das Checkboxes
         
-        let valorDoNumEspecifico;
+
+
+        let valorDoNumEspecifico = "-";
         let numespec = "";
+        function alertarValor() {
+            let LinhaQueNãoRecebe = document.getElementById('LinhaQueNaoRecebe').value;
+            valorDoNumEspecifico = LinhaQueNãoRecebe;
+        }
+
         function NumeroEspecifico(opcao){
             if(opcao == 'sim'){
+                
                 document.getElementById("NumEspecifico").style.display = 'block';
-                document.getElementById("DivDosTestes").style.display = 'block';
+            
                 document.getElementById("PerguntaPortabilidade").style.display = 'block';
 
                 document.getElementById("ch2").checked = false;
-
+                document.getElementById("DivDosTestes").style.display = 'block';
+                
                 numespec = "Sim";
 
 
             }else if(opcao == 'nao'){
                 document.getElementById("NumEspecifico").style.display = 'none';
-                document.getElementById("DivDosTestes").style.display = 'block';
+                
                 document.getElementById("PerguntaPortabilidade").style.display = 'block';
-            
+                document.getElementById("DivDosTestes").style.display = 'block';
                 document.getElementById("ch1").checked = false;
+                
                 numespec = "Não";
+                valorDoNumEspecifico = "-"
             }
             
             
@@ -318,12 +333,52 @@
                 linhaportada = "Sim";
                 
                 document.getElementById("Pr2").checked = false;
-        
-            }else if(opcao == 'nao'){
+                document.getElementById("checkboxes").style.display = 'none';
+                document.getElementById("DivDosTestes").style.display = 'none';
+
+                //DESMARCA TODAS AS CHECKBOXES QUE FORAM MARCADAS ANTERIORMENTE
+
+                document.getElementById("testesNao").checked = false;
+                document.getElementById("testesSim").checked = false;
+                document.getElementById("ch1").checked = false;
+                document.getElementById("ch2").checked = false;     
+                //FECHA A DIV DOS TESTES TAMBÉM
+
+                document.getElementById("DivDosTestes").style.display = 'none';
+                document.getElementById("TestesRealizados").style.display = 'none';
                 
+
+            }else if(opcao == 'nao'){
+                document.getElementById("respostaLinhaPortSIM").style.display = 'none';
                 document.getElementById("Pr1").checked = false;
                 linhaportada = "Não"
-                
+                document.getElementById("checkboxes").style.display = 'block';
+                document.getElementById("respostaPortRecentSIM").style.display = 'none';
+                document.getElementById("DivDosTestes").style.display = 'none';
+                document.getElementById("NumEspecifico").style.display = 'none';
+
+                const hrElements = document.getElementsByClassName("HRs");
+                for (let element of hrElements) {
+                    element.style.display = 'block';
+                }
+
+            // Desmarca ambas as opções do inferiorA3dias
+                document.getElementById("Inf1").checked = false;
+                document.getElementById("Inf2").checked = false;
+
+            //Desmarca as checkboxes de teste e numespecifico
+            
+            document.getElementById("testesNao").checked = false;
+            document.getElementById("testesSim").checked = false;
+            document.getElementById("ch1").checked = false;
+            document.getElementById("ch2").checked = false;            
+
+
+            //FECHA A DIV DOS TESTES TAMBÉM
+
+            document.getElementById("DivDosTestes").style.display = 'none';
+            document.getElementById("TestesRealizados").style.display = 'none';
+            
             }
         }
 
@@ -332,14 +387,58 @@
                 function InferiorA3dias(opcao){
                     if(opcao == 'sim'){
                         document.getElementById("respostaPortRecentSIM").style.display = 'block';
-            
-                        linhaportouInf3Dias = "Sim"
+
+                        linhaportouInf3Dias = "Sim";
                         document.getElementById("Inf2").checked = false;
-                
-                    }else if(opcao == 'nao'){
+
+                        // Fechar todo o roteiro após isso aqui
+                        document.getElementById("DivDosTestes").style.display = 'none';
+                        document.getElementById("TestesRealizados").style.display = 'none';
+                        document.getElementById("checkboxes").style.display = 'none';
+                        document.getElementById("NumEspecifico").style.display = 'none';
+
+                        //DESMARCA TODAS AS CHECKBOXES QUE FORAM MARCADAS ANTERIORMENTE
+
+                        document.getElementById("testesNao").checked = false;
+                        document.getElementById("testesSim").checked = false;
+                        document.getElementById("ch1").checked = false;
+                        document.getElementById("ch2").checked = false;     
+
                         
-                        linhaportouInf3Dias = "Não"
+                        //FECHA A DIV DOS TESTES TAMBÉM
+
+                        document.getElementById("DivDosTestes").style.display = 'none';
+                        document.getElementById("TestesRealizados").style.display = 'none';
+
+                        const hrElements = document.getElementsByClassName("HRs");
+                        for (let element of hrElements) {
+                            element.style.display = 'none';
+                        }
+
+                    } else if(opcao == 'nao'){
+                        document.getElementById("respostaPortRecentSIM").style.display = 'none';
+                        linhaportouInf3Dias = "Não";
                         document.getElementById("Inf1").checked = false;
+                        document.getElementById("checkboxes").style.display = 'block';
+                        document.getElementById("NumEspecifico").style.display = 'none';
+
+                        
+                        //DESMARCA TODAS AS CHECKBOXES QUE FORAM MARCADAS ANTERIORMENTE
+
+                        document.getElementById("testesNao").checked = false;
+                        document.getElementById("testesSim").checked = false;
+                        document.getElementById("ch1").checked = false;
+                        document.getElementById("ch2").checked = false;   
+
+                        //FECHA A DIV DOS TESTES TAMBÉM
+
+                        document.getElementById("DivDosTestes").style.display = 'none';
+                        document.getElementById("TestesRealizados").style.display = 'none';
+
+                        const hrElements = document.getElementsByClassName("HRs");
+                        for (let element of hrElements) {
+                            element.style.display = 'block';
+                        }
                     }
                 }
 
@@ -348,16 +447,15 @@
         function testes(opcao){
             if(opcao == 'sim'){
                 document.getElementById("TestesRealizados").style.display = 'block';
-                document.getElementById("testeNao").checked = false;
+                document.getElementById("testesNao").checked = false;
+                
                 const dataHora = document.getElementById("DataHoraTestes");
                 
             }else if(opcao == 'nao'){
                 document.getElementById("TestesRealizados").style.display = 'none';
-                document.getElementById("testeSim").checked = false;
+                document.getElementById("testesSim").checked = false;
             
             }
-            
-            
 
         }
         //FUNÇÃO DE ADICIONAR MAIS TESTES
@@ -411,8 +509,8 @@ DATA/HORA: ${DataHoraTeste}
     let TESTEORIGEM = document.getElementById(`testeOrigem`).value || 'Não informado';
     let TESTEDESTINO = document.getElementById(`testeDestino`).value || 'Não informado';
     let DataHoraTestes = DataHoraTestes1.replace("T"," ");
-    const LinhaQueNãoRecebe = document.getElementById("LinhaQueNaoRecebe").value;
-    valorDoNumEspecifico = LinhaQueNãoRecebe;
+    
+    
     
     
     const textoPronto = `
