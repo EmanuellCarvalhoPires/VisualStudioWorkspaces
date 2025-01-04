@@ -1,0 +1,66 @@
+/* STYLE DE IDs Principais */
+
+body{
+    background-color: #3e4451;
+    color: white;
+}
+
+h2{
+    padding-left: 21px;
+    padding-top: 21px;
+}
+
+#DivALL{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#formulario{
+    display: flex;
+    flex-direction: column;
+    width: 38%;
+    padding: 30px;
+    background-color: #1e2136;
+    border: solid 1px white;
+    border-radius: 10px;
+}
+
+/* STYLE DE ID ESPECÍFICOS */
+
+
+/* STYLES DE CLASS */
+
+.dropdown-item{
+    cursor:pointer;
+    
+}
+
+.dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 220px; /* Adjust the width as needed */
+}
+.dropdown-toggle::after {
+    margin-left: auto; /* Ensures arrow stays on the far right */
+}
+
+/* CLASS CHECKBOX */
+
+.list-group{
+    width: 500px;
+}
+
+#DivALL {
+    padding: 20px;
+}
+
+.form-check {
+    padding: 0px;
+}
+
+.form-check-input {
+    margin-right: 5px;
+}
