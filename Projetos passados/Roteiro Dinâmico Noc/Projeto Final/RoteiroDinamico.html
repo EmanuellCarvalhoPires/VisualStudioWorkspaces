@@ -87,9 +87,27 @@
 
                                         
                                     </div>
-                                    <div id="respostaPortRecentSIM" style="display: none;">
+
+
+                                    <div class="FECHATUDO" id="respostaPortRecentSIM" style="display: none;">
 
                                         <label><br>Você deve aguardar a Janela de portabilidade ser concluída para poder realizar a abertura de um ticket!<br></label>
+
+                                    </div>
+                                    <div class="FECHATUDO" id="respostaPortRecentNAO" style="display: none;">
+
+                                        <label>
+                                            
+                                            <br>A linha pertence à TELECALL no site da ABR Telecom?<a href="https://consultanumero.abrtelecom.com.br/consultanumero/consulta/consultaHistoricoRecenteCtg" target="_blank">Consultar Número</a><br><br></label>
+                                            
+                                            <div style="padding-right: 30px;"><input class="form-check-input" type="checkbox" value="" id="ABR1" onclick="ConsultaABR('sim')" />Sim</input></div>
+                                            
+                                            <div><input class="form-check-input" type="checkbox" value="" id="ABR2" onclick="ConsultaABR('nao')"/>Não</input></div>
+                                            
+
+                                        <!--RESPOSTA DE NÃO POSSUIR A CONTA NA ABR-->
+
+                                        
 
                                     </div>
                                     
@@ -99,7 +117,7 @@
                             </div>
 
                             <!--Número específico-->
-                            <div id="checkboxes" style="display: none;">
+                            <div class="FECHATUDO" id="checkboxes" style="display: none;">
                                 <div class="form-check" style="padding: 0px;">
                                     
                                     A linha não está recebendo de um número específico?</p> 
@@ -123,7 +141,7 @@
 
                             <!--TESTES INFORMADOS PELA MVNO-->
 
-                            <div class="" id="DivDosTestes" style="display: none;">
+                            <div class="FECHATUDO" id="DivDosTestes" style="display: none;">
                                 <div style="margin-bottom: 20px;">
                                     Foram realizados testes?<br>
                                     <input class="form-check-input" type="checkbox" id="testesSim" onclick="testes('sim')"/>  Sim </input>

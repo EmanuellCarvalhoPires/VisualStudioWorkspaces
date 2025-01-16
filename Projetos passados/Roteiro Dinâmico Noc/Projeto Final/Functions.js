@@ -131,6 +131,7 @@ function LinhaPortada(opcao){
 
     }else if(opcao == 'nao'){
         document.getElementById("respostaLinhaPortSIM").style.display = 'none';
+        document.getElementById("respostaPortRecentNAO").style.display = 'none';
         document.getElementById("Pr1").checked = false;
         linhaportada = "Não"
         document.getElementById("checkboxes").style.display = 'block';
@@ -177,6 +178,7 @@ function LinhaPortada(opcao){
                 document.getElementById("TestesRealizados").style.display = 'none';
                 document.getElementById("checkboxes").style.display = 'none';
                 document.getElementById("NumEspecifico").style.display = 'none';
+                document.getElementById("respostaPortRecentNAO").style.display = 'none';
 
                 //DESMARCA TODAS AS CHECKBOXES QUE FORAM MARCADAS ANTERIORMENTE
 
@@ -184,7 +186,7 @@ function LinhaPortada(opcao){
                 document.getElementById("testesSim").checked = false;
                 document.getElementById("ch1").checked = false;
                 document.getElementById("ch2").checked = false;     
-
+                
                 
                 //FECHA A DIV DOS TESTES TAMBÉM
 
@@ -197,10 +199,11 @@ function LinhaPortada(opcao){
                 }
 
             } else if(opcao == 'nao'){
+                document.getElementById("respostaPortRecentNAO").style.display = 'block';
                 document.getElementById("respostaPortRecentSIM").style.display = 'none';
                 linhaportouInf3Dias = "Não";
                 document.getElementById("Inf1").checked = false;
-                document.getElementById("checkboxes").style.display = 'block';
+                document.getElementById("checkboxes").style.display = 'none';
                 document.getElementById("NumEspecifico").style.display = 'none';
 
                 
@@ -222,6 +225,19 @@ function LinhaPortada(opcao){
                 }
             }
         }
+
+//CONFIRMAR SE O NÚMERO É NOSSO NA ABR
+
+function ConsultaABR(opcao){
+    if(opcao == 'sim'){
+        document.getElementById("ABR2").checked = false;
+        document.getElementById("checkboxes").style.display = 'block';
+                
+    }else if(opçao = 'nao'){
+        document.getElementById("ABR1").checked = false;
+        document.getElementById("checkboxes").style.display = 'none';
+    }
+}
 
 //FUNCTION DE TESTES
 
