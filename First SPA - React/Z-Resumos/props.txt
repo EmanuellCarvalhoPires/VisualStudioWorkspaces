@@ -1,0 +1,37 @@
+React 
+
+- Props, são propriedades Read-only em que você pode enviar dados para outros componentes. Por exemplo, você pode inserir dados num componente através dos props usando <component key=value /> , ou seja, você cria um componente com os props para receber os dados quando o componente for chamado.
+
+Exemplo:
+
+============================
+/* eslint-disable react/prop-types */
+// ESSE CÓDIGO NÃO ESTÁ MOSTRANDO ERRO POR CAUSA DA LINHA ACIMA
+import PropTypes from "prop-types"
+
+function Student(props){
+		return(
+			<div className="student">
+				<p>
+					Name: {props.name} <br/>
+					Age: {props.age} <br/>
+					Student: {props.isStudent ? "Yes" : "No"}
+				</p>
+			</div>
+		);a
+	}
+
+	Student.propTypes = {
+	  name: PropTypes.string,
+	  age: PropTypes.number,
+	  isStudent: PropTypes.bool
+	}
+
+	Student.defaultProps = {
+		name: "Guest",
+		age: 0,
+		isStudent: false
+	}
+
+	export default Student	
+============================

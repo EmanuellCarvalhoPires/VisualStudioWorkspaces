@@ -1,0 +1,107 @@
+O que eu entendi hoje do código do chatGPT:
+
+Primeira coisa é que a interrogação no PHP, ela pode ser usada em várias situações como por exemplo:
+
+- usar numa condicional:
+
+	condição ? valor_se_verdadeiro : valor_se_falso;
+		
+		-O que faz?
+		-Avalia uma condição.
+		-Retorna um valor se a condição for verdadeira e outro valor se for falsa.
+	
+	Exemplo:
+	
+		$idade = 20;
+		$categoria = ($idade >= 18) ? "Adulto" : "Menor";
+		echo $categoria; // Saída: "Adulto"
+		
+		
+		
+		
+- O operador "??" verifica se uma variável está definida e não é null. Caso contrário, retorna um valor padrão.
+
+____________________________________________________________________________
+
+Como também aprendi sobre o fetch do JavaScript e como ele funciona:
+
+Toda vez que você usa o fetch, você está realizando um requisição à um arquivo/servidor/URL. 
+
+E nessa requisição, você pode simplesmente solicitar informações sem necessidade de enviar dados(ou seja o GET), exemplo:
+
+
+fetch('https://jsonplaceholder.typicode.com/posts')
+  .then(response => response.json()) // O response é o parâmetro usado para receber a resposta da requisição
+  .then(data => {
+    console.log(data); // Dados da resposta
+  })
+  .catch(error => {
+    console.error('Erro:', error);
+  });
+
+----------------------
+
+Nesse requisição também é possível enviar informações ao arquivo/servidor/URL, usando o method post, exemplo:
+
+fetch('https://jsonplaceholder.typicode.com/posts', {
+  method: 'POST', // Método HTTP
+  headers: {
+    'Content-Type': 'application/json', // OLHA A OBSERVAÇÃO COM ID 1 NO FINAL DO ARQUIVO
+  },
+  body: JSON.stringify({
+    title: 'Título do Post',
+    body: 'Conteúdo do post',
+    userId: 1,
+  }), // Corpo da requisição
+})
+  .then(response => response.json())
+  .then(data => {
+    console.log('Sucesso:', data);
+  })
+  .catch(error => {
+    console.error('Erro:', error);
+  });
+
+____________________________________________________________________________
+
+O uso do "php://input" na linha de codigo:
+
+	$data = json_decode(file_get_contents("php://input"), true);
+
+Esse php://input serve para dizer ao servidor que ele deve ler o corpo da requisição que foi feita através do fetch.
+
+Ou seja, o php://input diz que deve ser lido o corpo da requisição:
+
+			method: 'POST', 
+			  headers: {
+				'Content-Type': 'application/json', 
+			  },
+			  body: JSON.stringify({
+				title: 'Título do Post',
+				body: 'Conteúdo do post',
+				userId: 1,
+			  })
+
+Sendo assim, ele vai ler o tipo da requisição, o tipo dos dados enviados nessa requisição e vai ler o body enviado pela requisição
+____________________________________________________________________________
+
+
+
+ID 1 - Observação:
+
+Essa observação é para explicar o que esse codigo abaixo faz
+
+	headers: {
+		'Content-Type': 'application/json',
+	 },
+
+Então, numa requisição POST é necessário que seja informado o tipo de dados que está sendo enviado pela requisição, e nesse caso estamos trabalhando com arquivos .json e esse headers é justamente pra isso. Existem outros formatos que podem ser colocados no headers, como:
+
+=> O formato "application/x-www-form-urlencoded" geralmente usado em Formulários HTML (padrão) que é Simples, fácil de processar, mas não ideal para arquivos ou dados complexos.
+
+=> O formato "multipart/form-data"	que são geralmente formulários com uploads de arquivos, em que ele divide os dados em partes separadas por fronteiras (boundary); usado para enviar arquivos e campos de formulário.
+
+=> E o formato "application/json" que é usado geralmente em APIs modernas, ele envia os dados no formato JSON e é ideal para APIs REST, mas requer decodificação explícita no servidor (usando JSON).
+
+
+-------------------

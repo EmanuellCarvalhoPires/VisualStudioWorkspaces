@@ -1,0 +1,46 @@
+
+
+.card{
+  border: 1px solid rgb(255, 223, 223);
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px rgb(122, 122, 122);
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  max-width: 250px;
+  display: inline-block;
+}
+.card .CardImage{
+  max-width: 60%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.card .card-title{
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  color: rgb(53, 53, 53);
+}
+
+.card .card-text{
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(87, 87, 87);
+}
+
+.student{
+  display: inline-block;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2em;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.726);
+  width: fit-content;
+  margin-right
+  : 10px;
+  
+}
+
+.student p{
+  margin: 0;
+}
