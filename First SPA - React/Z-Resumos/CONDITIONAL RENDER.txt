@@ -1,0 +1,3 @@
+- CONDITIONAL RENDER, esse modelo utiliza os props para transitar valores e de acordo com esses valores o componente criado vai gerar uma condicional, por exemplo:
+
+o componente foi chamado no arquivo .jsx e atráves do prop foi enviado o valor booleano "True", quando o componente receber esse valor ele vai executar a função do componente e lá dentro tera um condicional como if/else ou um operador ternário(condition ? expr1 : expr2)

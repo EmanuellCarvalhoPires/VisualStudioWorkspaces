@@ -1,5 +1,3 @@
-React 
-
 - Props, são propriedades Read-only em que você pode enviar dados para outros componentes. Por exemplo, você pode inserir dados num componente através dos props usando <component key=value /> , ou seja, você cria um componente com os props para receber os dados quando o componente for chamado.
 
 Exemplo:

@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 // ESSE CÓDIGO NÃO ESTÁ MOSTRANDO ERRO POR CAUSA DA LINHA ACIMA
+
 import PropTypes from "prop-types"
 
 function Student(props){
