@@ -1,0 +1,30 @@
+
+O useState do React é uma função que permite a criação de estados locais em componentes funcionais. Ele é um Hook, que é uma função que dá acesso a recursos de um componente funcional. 
+O useState retorna um array com duas posições: o estado atual e uma função para atualizá-lo. 
+
+- Exemplo -
+
+import { useState } from 'react'; //Primeiro você importa o useState para utilizar ele
+
+function MyComponent(){
+
+    const [name, setName] = useState(''); //Aqui o useState faz sua mágica, o "name" é a variável que terá seu valor atualizado, o "setName" é a função que fará isso, e o " = useState('');" é onde fica a função e o valor padrão
+    const [age, setAge] = useState(0);
+    const [isEmployed, setIsEmployed] = useState(false);
+
+    const updateDate = () => {
+        setName("Emanuell");
+        setAge(age + 10);
+        setIsEmployed(true)
+    } 
+
+    return(
+            <div>
+                <p>Name - {name}<br/>
+                Idade - {age}<br/>
+                Está empregado? - {isEmployed ? "Sim" : "Não"}</p>
+                <button onClick={() => updateDate()}>Clique</button> //aqui usou o onClick para chamar a function updateDate() e dentro da updateDate está as functions useState criadas para alterar os valores
+            </div>
+    );
+}
+export default MyComponent

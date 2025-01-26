@@ -1,0 +1,12 @@
+
+O onclick é um DOM event que serve para executar uma function quando algum button é clicado:
+
+No react o onclick funciona muito parecido:
+
+        <button onClick={() => HandleClick2("Emanuell")}>Click</button>
+
+esse formato "onClick={() => HandleClick2("Emanuell")}" mostra que o "() => ..." está vindo antes do nome do onclick. Isso ocorre porque quando você passa um valor através do onclick,
+o onclick é executado na hora que a página carrega. Quando você coloca "() => ..." antes do nome do onclick ele faz com que a function não seja executada ao carregar a página
+
+
+Observação: existe uma versão chamada onDoubleClick, que você sabe oq ela deve fazer né

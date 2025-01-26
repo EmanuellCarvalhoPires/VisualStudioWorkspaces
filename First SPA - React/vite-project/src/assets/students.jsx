@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 // ESSE CÓDIGO NÃO ESTÁ MOSTRANDO ERRO POR CAUSA DA LINHA ACIMA
 
-import PropTypes from "prop-types"
 
 function Student(props){
     
@@ -21,16 +20,6 @@ function Student(props){
 
 }
 
-Student.propTypes = {
-  name: PropTypes.string,
-  age: PropTypes.number,
-  isStudent: PropTypes.bool
-}
 
-Student.defaultProps = {
-    name: "Guest",
-    age: 0,
-    isStudent: false
-}
 
 export default Student

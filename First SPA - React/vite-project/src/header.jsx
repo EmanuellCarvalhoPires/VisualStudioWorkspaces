@@ -4,6 +4,8 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import ProfilePic from './profilepicture';
+
 
 function Header() {
 
@@ -11,7 +13,7 @@ function Header() {
     display: "none"
   }
   return (
-    <Navbar expand="lg" bg="dark" variant='dark' className="bg-body-dark">
+    <Navbar id="NavbarHeader" expand="lg" bg="dark" variant='dark' className="bg-body-dark">
       <Container fluid>
         <Navbar.Brand href="#">Portal NOC</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -47,6 +49,7 @@ function Header() {
             <Button variant="outline-light">Search</Button>
           </Form>
         </Navbar.Collapse>
+        <ProfilePic/>
       </Container>
     </Navbar>
   );

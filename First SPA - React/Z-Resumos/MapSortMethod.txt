@@ -1,0 +1,12 @@
+o método "map()" serve para arrays, ou seja, ele passa por cada item de um array e criar um novo array inserindo os valores desejados que varia de acordo com a formula
+
+    const fruits = [{id: 1, name: "Apple", calorias: 95},
+                    {id: 2, name: "Orange", calorias: 45},
+                    {id: 3, name: "Banana", calorias: 105},
+                    {id: 4, name: "Coconut", calorias: 159}]
+
+    const listItems = fruits.map(fruit => <li key={fruit.id}>{fruit.name} </li>);
+
+o Exemplo usa o map para que cada elemento dentro fo array "fruits" seja transformado num item de uma lista HTML
+
+Diferentemente do map() que gera um novo array quando é utilizado, o método sort() serve para organizar um array de acordo com a configuração escolhida
