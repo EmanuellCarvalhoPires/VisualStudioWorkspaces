@@ -1,0 +1,44 @@
+updaterFunction serve para a seguinte situação, você tem uma function criada pelo useState e você quer atualizar uma variável utilizando essa função como:
+
+    const [count, setCount] = useState(0)
+
+    function increment(){
+        setCount(count + 1)         <------------------
+    }
+
+Contudo, você por alguma razão quer usar várias vezes o setCount(count + 1) ao executar a function apenas uma vez, porém você não pode fazer assim:
+
+    const [count, setCount] = useState(0)
+
+    function increment(){
+        setCount(count + 1)         <------------------
+        setCount(count + 1)         <------------------ ( Você não pode adicionar o setCount 3 vezes seguidas )
+        setCount(count + 1)         <------------------
+        //UPDATE OCORRE AQUI
+        
+    }
+
+Você não pode adicionar o setCount 3 vezes seguidas porque o setCount só atualiza o valor da variável count depois da função principal finalizar, ou seja, o setCount soma o valor original de
+count + 1, 3 vezes seguidas. Mas para o caso de você precisar atualizar o valor ainda dentro da function principal, você pode fazer assim:
+
+    const [count, setCount] = useState(0)
+
+    function increment(){
+        setCount(c => c + 1)         
+        //UPDATE OCORRE AQUI
+        setCount(c => c + 1)         
+        //UPDATE OCORRE AQUI
+        setCount(c => c + 1)        
+        //UPDATE OCORRE AQUI
+        
+    }
+
+
+OBSERVAÇÃO:
+
+A LETRA "C" QUE FOI USADA PRA SUBSTITUIR O "COUNT" SÓ FOI ESCOLHIDA PELO FATO DE QUE ELA É A LETRA INICIAL DE COUNT, OU SEJA, SE A VARIÁVEL FOSSE "PAPELAO123RODINHAXIQUEXIQUEBAHIA" A LETRA QUE
+IRÁ SUBSTITUIR SERIA A LETRA "P" PORQUE É A INICIAL DA VARIÁVEL "PAPELAO123RODINHAXIQUEXIQUEBAHIA".
+
+Como também, ao invés da inicial da variável pode ser substituído pelo valor da variável só que antes da variável escrever "prev", ou seja, "prevPAPELAO123RODINHAXIQUEXIQUEBAHIA" ou "prevCount
+
+TENDEU?

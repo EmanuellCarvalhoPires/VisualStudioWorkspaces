@@ -1,5 +1,4 @@
 
-
 import { useState } from 'react';
 
 
@@ -14,7 +13,7 @@ function MyComponent(){
     const updateDate = () => {
         setName("Emanuell");
         setAge(age + 10);
-        setIsEmployed(true)
+        setIsEmployed(!isEmployed)
     } 
 
 

@@ -1,0 +1,26 @@
+O tipo de function onChange serve para executar uma function toda vez que ocorre uma alteração no input,textarea ou coisas parecidas (acho que também serve para detectar click num button)
+
+
+- Exemplo - 
+
+import { useState } from "react";
+
+function OnChangeComponent(){
+
+    const [name, setName] = useState('');
+
+    function handleNameChange(event){
+        setName(event.target.value)
+    }
+
+    return(
+
+        <div>
+            <input value={name} onChange={handleNameChange}/>
+            <p>Name: {name}</p>
+        </div>
+    )
+
+}
+
+export default OnChangeComponent
