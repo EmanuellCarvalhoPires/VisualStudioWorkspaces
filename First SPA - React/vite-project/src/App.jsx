@@ -1,5 +1,5 @@
 import Header from "./header";
-import UpdateObjectsInStates from "./updateObjectsInState";
+
 
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
   return(
     <>
       <Header/>
-      <UpdateObjectsInStates/>
+      
       
 
     </>
