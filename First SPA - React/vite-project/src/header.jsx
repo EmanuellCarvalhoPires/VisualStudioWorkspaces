@@ -12,8 +12,9 @@ function Header() {
   const disable = {
     display: "none"
   }
+
   return (
-    <Navbar id="NavbarHeader" expand="lg" bg="dark" variant='dark' className="bg-body-dark">
+    <Navbar id="NavbarHeader" expand="lg" bg="dark" variant='dark' className="header">
       <Container fluid>
         <Navbar.Brand href="#">Portal NOC</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
