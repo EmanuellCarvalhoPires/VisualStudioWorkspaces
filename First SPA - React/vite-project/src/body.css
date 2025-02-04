@@ -14,7 +14,7 @@
     margin-top: 150px;
     background-color: #D4A017;
     height: max-content;
-    width: 40%;
+    width: 70%;
   
   }
 
@@ -43,4 +43,27 @@
 .nav-tabs .nav-link.active:hover {
   color: black; /* Texto permanece preto */
   background-color: white; /* Fundo permanece branco */
+}
+
+/*table*/
+
+#TABLEBODY{
+  
+  
+}
+
+#TABLEHEAD{
+  
+}
+
+#uncontrolled-tab-example-tabpane-home {
+  overflow:overlay;
+  border-radius: 10px;
+  height: 350px;
+  
+}
+
+div[id="uncontrolled-tab-example-tabpane-Novo caso"]{
+  overflow: auto;
+  height: 300px;
 }

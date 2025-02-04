@@ -40,6 +40,25 @@ app.post("/api/falhas/add", (req, res) => {
     });
 });
 
+
+//ROTA PARA BUSCAR TODAS AS FALHAS REGISTRADAS
+
+app.get("/api/falhas/get", (req, res) => {
+
+    const query = "SELECT * FROM falhas";
+    db.query(query, (err, result) => {
+        if (err) {
+            console.error("Erro ao inserir falha:", err);
+            res.status(500).json({ error: "Erro ao buscar falhas" });
+        } else {
+            res.json(result)
+
+        }
+    });
+
+
+})
+
 // Iniciar o servidor
 app.listen(8080, () => {
     console.log("Servidor rodando na porta 8080");

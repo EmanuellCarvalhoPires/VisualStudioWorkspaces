@@ -1,9 +1,9 @@
-import ListGroup from 'react-bootstrap/ListGroup';
+import Table from 'react-bootstrap/Table';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import './body.css'
 import FormFalha from './assets/formularioCriarFalha';
-
+import ListarFalhas from './assets/listarFalhas';
 
 
 function Body(){
@@ -15,15 +15,23 @@ function Body(){
                 <div className="TudoDentroDaCentralDIV">
                     <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example" className="mb-3" itemID='TITULOTAB'>
                             <Tab eventKey="home" title="Falhas atuais" className='corTitulo'>
+                                <Table responsive striped hover size="lg" id='TABLE'>
+                                    <thead id='TABLEHEAD'>
+                                        <tr >
+                                            <th>ID</th>
+                                            <th>Ticket</th>
+                                            <th>MVNO</th>
+                                            <th>PRIORIDADE</th>
+                                            <th>Setor Responsável pela Falha</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id='TABLEBODY'>
 
-                                <ListGroup>
-                                    <ListGroup.Item></ListGroup.Item>
-                                    <ListGroup.Item></ListGroup.Item>
-                                    <ListGroup.Item></ListGroup.Item>
-                                    <ListGroup.Item></ListGroup.Item>
-                                    <ListGroup.Item></ListGroup.Item>
-                                </ListGroup>
-
+                                        <ListarFalhas/>
+                                        
+                                    </tbody>
+                                </Table>
                             </Tab>
                             <Tab eventKey="Novo caso" title="Falhas antigas">
                                 Tab content for Profile
