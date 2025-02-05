@@ -50,13 +50,51 @@ app.post('/registicket', async (req, res) => {
     }
 })
 
-//ROTA PARA LISTAR DADOS
+//ROTA PARA LISTAR TODOS OS TICKETS ABERTOS
 
 app.get('/listarTickets', async (req, res) => {
     try {
-        const listaTickets = await Noc.find();
+        const listaTickets = await Noc.find({ status: true });
         res.json(listaTickets);
     } catch (err) {
         res.status(500).json({ error: "Erro ao buscar chamados." });
     }
 })
+
+//ROTA PARA LISTAR TICKETS FECHADOS
+
+app.get('/listarTicketsFechados', async (req, res) => {
+    try {
+        const listaTickets = await Noc.find({ status: false });
+        res.json(listaTickets);
+    } catch (err) {
+        res.status(500).json({ error: "Erro ao buscar chamados." });
+    }
+})
+
+//ROTA PARA ATUALIZAR O STATUS DE UM TICKET
+
+app.put('/AtualizarStatus/:ticket', async (req, res) => {
+    try {
+
+        const { ticket } = req.params;
+        const { status } = req.body;
+
+        // Encontra o chamado pelo nome e atualiza o status
+        const chamadoAtualizado = await Noc.findOneAndUpdate(
+            { ticket: ticket },           // Filtro para encontrar o documento
+            { status: status },           // O campo a ser atualizado
+            { new: true }                 // Retorna o documento atualizado
+        );
+
+        if (!chamadoAtualizado) {
+            return res.status(404).json({ message: "Chamado não encontrado" });
+        }
+        res.json(chamadoAtualizado);
+    } catch (err) {
+        res.status(500).json({ err: "Erro ao atualizar chamados." });
+    }
+})
+
+
+//const atualizarTicket = await Noc.findByIdAndUpdate(req.params.id, { status: req.body.status }, { new: false });

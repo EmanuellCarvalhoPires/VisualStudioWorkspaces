@@ -4,7 +4,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import './body.css'
 import FormFalha from './assets/formularioCriarFalha';
 import ListarFalhas from './assets/listarFalhas';
-
+import ListarFalhasFechadas from './assets/listarFalhasAntigas';
 
 function Body(){
 
@@ -34,7 +34,7 @@ function Body(){
                                 </Table>
                             </Tab>
                             <Tab eventKey="Novo caso" title="Falhas antigas">
-                                Tab content for Profile
+                                <ListarFalhasFechadas/>
                             </Tab>
                             <Tab eventKey="Nova falha" title="Adicionar falha" >
                                 <FormFalha/>

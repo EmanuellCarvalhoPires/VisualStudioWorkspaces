@@ -19,3 +19,14 @@
     align-items: center;
     justify-content: center;
 }
+
+#statusLinha{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#buttonFechar{
+    padding: 5px;
+
+}
