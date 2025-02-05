@@ -7,7 +7,7 @@ function ListarFalhas(){
 
 
     useEffect(() => {
-        fetch("http://localhost:8080/api/falhas/get")
+        fetch("http://localhost:3000/listarTickets")
         .then(response => response.json())
         .then(data => setListData(data))
         
@@ -19,13 +19,12 @@ function ListarFalhas(){
                 {ListData.length > 0 ? (
                     ListData.map(Data => (
                         
-                        <tr key={Data.MVNO}>
-                            <td><a href={`/detalhes/${Data.TICKET}`} style={{ textDecoration: "none", color: "inherit" , cursor: "pointer"}}>{Data.ID}</a></td>
-                            <td>{Data.TICKET}</td>
-                            <td>{Data.MVNO} </td>
-                            <td>{Data.PRIORIDADE}</td>
-                            <td>{Data.DONOFALHA}</td>
-                            <td>{Data.STATUS == 0 ? "Aberto" : "Fechado"}</td>
+                        <tr key={Data.mvno}>
+                            <td><a style={{ textDecoration: "none", color: "inherit" , cursor: "pointer"}}>{Data.ticket}</a></td>
+                            <td>{Data.mvno} </td>
+                            <td>{Data.prioridade}</td>
+                            <td>{Data.donofalha}</td>
+                            <td>{Data.status == true ? "Aberto" : "Fechado"}</td>
                         </tr>
                         
                 ))

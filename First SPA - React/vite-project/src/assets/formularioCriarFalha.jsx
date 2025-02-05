@@ -4,8 +4,6 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import './FormCSS.css';
 import { useState } from "react";
-import axios from "axios";
-
 
 function FormFalha() {
     
@@ -15,6 +13,7 @@ function FormFalha() {
         descricao: "",
         prioridade: "",
         donofalha: "",
+        status: true
     });
 
 
@@ -26,11 +25,21 @@ function FormFalha() {
     // Envia os dados para o backend
     const handleSubmit = async (event) => {
         event.preventDefault(); // Evita recarregar a página
+        
+        
         try {
-            const response = await axios.post("http://localhost:8080/api/falhas/add", formData);
+            const response = await fetch("http://localhost:3000/registicket", {
+                
+                method:"POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(formData),
+            })
+
+
             console.log("Resposta do servidor:", response.data);
             alert("Falha registrada com sucesso!");
             setFormData({ mvno: "", ticket: "", descricao: "", prioridade: "", donofalha: "" }); // Limpa os campos
+
         } catch (error) {
             console.error("Erro ao inserir os dados:", error);
             alert("Erro ao registrar a falha.");

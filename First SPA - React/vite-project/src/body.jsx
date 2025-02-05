@@ -18,7 +18,7 @@ function Body(){
                                 <Table responsive striped hover size="lg" id='TABLE'>
                                     <thead id='TABLEHEAD'>
                                         <tr >
-                                            <th>ID</th>
+                                            
                                             <th>Ticket</th>
                                             <th>MVNO</th>
                                             <th>PRIORIDADE</th>
