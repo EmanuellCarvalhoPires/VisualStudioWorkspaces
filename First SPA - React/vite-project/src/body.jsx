@@ -34,7 +34,24 @@ function Body(){
                                 </Table>
                             </Tab>
                             <Tab eventKey="Novo caso" title="Falhas antigas">
-                                <ListarFalhasFechadas/>
+                                    
+                            <Table responsive striped hover size="lg" id='TABLE'>
+                                    <thead id='TABLEHEAD'>
+                                            <tr >
+                                                
+                                                <th>Ticket</th>
+                                                <th>MVNO</th>
+                                                <th>PRIORIDADE</th>
+                                                <th>Setor Responsável pela Falha</th>
+                                                <th>Status</th>
+                                            </tr>
+                                    </thead>
+                                    <tbody id='TABLEBODY'>
+
+                                        <ListarFalhasFechadas/>
+                                        
+                                    </tbody>
+                                </Table>
                             </Tab>
                             <Tab eventKey="Nova falha" title="Adicionar falha" >
                                 <FormFalha/>

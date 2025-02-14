@@ -25,8 +25,8 @@ function ListarFalhas(){
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ status: false }),
-            });
-            
+            })
+
             
         }catch(err){
             console.log(err)
@@ -38,7 +38,7 @@ function ListarFalhas(){
                 {ListData.length > 0 ? (
                     ListData.map(Data => (
                         
-                            <tr key={Data.mvno}>
+                            <tr key={Data.ticket}>
                                 <td><a style={{ textDecoration: "none", color: "inherit" , cursor: "pointer"}}>{Data.ticket}</a></td>
                                 <td>{Data.mvno} </td>
                                 <td>{Data.prioridade}</td>

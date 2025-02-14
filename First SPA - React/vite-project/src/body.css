@@ -47,13 +47,12 @@
 
 /*table*/
 
-#TABLEBODY{
-  
-  
-}
 
-#TABLEHEAD{
-  
+
+div[id="uncontrolled-tab-example-tabpane-Novo caso"]{
+  overflow:overlay;
+  border-radius: 10px;
+  height: 350px;
 }
 
 #uncontrolled-tab-example-tabpane-home {
@@ -65,5 +64,5 @@
 
 div[id="uncontrolled-tab-example-tabpane-Novo caso"]{
   overflow: auto;
-  height: 300px;
+  height: 350px;
 }

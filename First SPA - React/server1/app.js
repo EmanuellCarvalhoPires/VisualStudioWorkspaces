@@ -78,21 +78,24 @@ app.put('/AtualizarStatus/:ticket', async (req, res) => {
     try {
 
         const { ticket } = req.params;
-        const { status } = req.body;
+        const { status } = req.body
+
+
 
         // Encontra o chamado pelo nome e atualiza o status
         const chamadoAtualizado = await Noc.findOneAndUpdate(
             { ticket: ticket },           // Filtro para encontrar o documento
             { status: status },           // O campo a ser atualizado
-            { new: true }                 // Retorna o documento atualizado
+            { new: false }                 // Retorna o documento atualizado
         );
 
         if (!chamadoAtualizado) {
             return res.status(404).json({ message: "Chamado não encontrado" });
         }
-        res.json(chamadoAtualizado);
+        return res.status(200).json({ message: "Chamado atualizado com sucesso", chamadoAtualizado });
+
     } catch (err) {
-        res.status(500).json({ err: "Erro ao atualizar chamados." });
+        console.log(err);
     }
 })
 

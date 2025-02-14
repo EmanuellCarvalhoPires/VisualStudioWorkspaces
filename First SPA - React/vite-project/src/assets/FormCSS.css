@@ -15,6 +15,7 @@
     border-radius: 10px;
     padding: 30px;
     width: 45%;
+    height: 400px;
     display:  flex;
     align-items: center;
     justify-content: center;
@@ -27,6 +28,17 @@
 }
 
 #buttonFechar{
-    padding: 5px;
+    padding: 2px;
 
+}
+
+#textAreaForm{
+    width: 100%;
+    min-height: 40px;
+    max-height: 300px;
+    overflow-y:scroll !important;
+    resize: none;
+    
+    white-space: pre-wrap; /* Permite quebras de linha e mantém espaços */
+    word-wrap: break-word; /* Quebra palavras longas */
 }

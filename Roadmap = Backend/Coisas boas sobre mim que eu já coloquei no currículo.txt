@@ -1,0 +1,13 @@
+Coisas que eu já escrevi sobre mim no currículo:
+
+Estou empenhado no aprendizado de linguagens de programação backend, como também, obtendo conhecimento em análise de dados em excel;
+
+Possuo também, certa experiência com o uso da ferramenta de gerenciamento Salesforce.
+
+Principais linguagens de programação, frameworks e outros conhecimentos:
+
+- JavaScript, NodeJS
+- React e React-Bootstrap
+- Python
+- Excel
+- HTML e CSS

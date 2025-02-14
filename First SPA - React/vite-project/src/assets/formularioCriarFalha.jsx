@@ -5,6 +5,8 @@ import Row from 'react-bootstrap/Row';
 import './FormCSS.css';
 import { useState } from "react";
 
+
+
 function FormFalha() {
     
     const [formData, setFormData] = useState({
@@ -63,11 +65,21 @@ function FormFalha() {
                 <Form.Label>Ticket</Form.Label>
                 <Form.Control type="text" placeholder="Ticket" name="ticket" value={formData.ticket}  onChange={handleChange} required/>
                 </Form.Group>
+
+            </Row>
+            <Row>
+
+                <Form.Group as={Col} controlId="formGridPassword">
+                <Form.Label>Titulo</Form.Label>
+                <Form.Control type="text" placeholder="Titulo" name="titulo" value={formData.titulo}  onChange={handleChange} required/>
+                </Form.Group>
+
             </Row>
 
             <Form.Group className="mb-3" controlId="formGridAddress1">
                 <Form.Label>Descrição</Form.Label>
-                <Form.Control type='textarea' name="descricao" value={formData.descricao}  onChange={handleChange} required/>
+                <Form.Control type='textarea' name="descricao" value={formData.descricao}  onChange={handleChange} required />
+                
             </Form.Group>
 
 
@@ -75,7 +87,7 @@ function FormFalha() {
             <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridCity">
                 <Form.Label>Prioridade</Form.Label>
-                <Form.Control type="text" name="prioridade" value={formData.prioridade}  onChange={handleChange} required/>
+                <Form.Control type="number" name="prioridade" value={formData.prioridade}  onChange={handleChange} required/>
                 </Form.Group>
 
 
