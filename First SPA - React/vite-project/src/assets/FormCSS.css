@@ -27,10 +27,19 @@
     align-items: center;
 }
 
+#statusLinha2{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 #buttonFechar{
     padding: 2px;
+    margin: 2px;
+    font-size: 18px;
 
 }
+
 
 #textAreaForm{
     width: 100%;

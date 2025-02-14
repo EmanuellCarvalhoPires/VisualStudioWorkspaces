@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import Example from "./ModalFalha";
 
 function ListarFalhasFechadas(){
 
@@ -13,18 +13,19 @@ function ListarFalhasFechadas(){
         
     }, [])
 
-    
+
+
     return(
         <>
                 {ListData.length > 0 ? (
                     ListData.map(Data => (
                         
                         <tr key={Data.ticket}>
-                            <td><a style={{ textDecoration: "none", color: "inherit" , cursor: "pointer"}}>{Data.ticket}</a></td>
+                            <td>{Data.ticket}</td>
                             <td>{Data.mvno} </td>
                             <td>{Data.prioridade}</td>
                             <td>{Data.donofalha}</td>
-                            <td>{Data.status == true ? "Aberto" : "Fechado"}</td>
+                            <td><div id="statusLinha2">{Data.status == true ? "Aberto" : "Fechado"} <Example/></div></td>
                         </tr>
                         
                 ))

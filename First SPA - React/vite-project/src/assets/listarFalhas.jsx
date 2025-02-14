@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "react-bootstrap/esm/Button";
 import './FormCSS.css';
-
+import Example from "./ModalFalha";
 
 function ListarFalhas(){
 
@@ -43,7 +43,7 @@ function ListarFalhas(){
                                 <td>{Data.mvno} </td>
                                 <td>{Data.prioridade}</td>
                                 <td>{Data.donofalha}</td>
-                                <td><div id="statusLinha">{Data.status == true ? "Aberto" : "Fechado"} <Button id="buttonFechar" variant="light" onClick={() => fechar(Data.ticket)}>Fechar</Button></div></td>
+                                <td><div id="statusLinha">{Data.status == true ? "Aberto" : "Fechado"} <Example/><Button id="buttonFechar" variant="dark" onClick={() => fechar(Data.ticket)}>Fechar</Button></div></td>
                             </tr>
                         
                 ))
