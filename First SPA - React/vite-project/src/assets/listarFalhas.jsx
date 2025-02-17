@@ -43,7 +43,7 @@ function ListarFalhas(){
                                 <td>{Data.mvno} </td>
                                 <td>{Data.prioridade}</td>
                                 <td>{Data.donofalha}</td>
-                                <td><div id="statusLinha">{Data.status == true ? "Aberto" : "Fechado"} <Example/><Button id="buttonFechar" variant="dark" onClick={() => fechar(Data.ticket)}>Fechar</Button></div></td>
+                                <td><div id="statusLinha">{Data.status == true ? "Aberto" : "Fechado"} <Example ticket={Data}/><Button id="buttonFechar" variant="dark" onClick={() => fechar(Data.ticket)}>Fechar</Button></div></td>
                             </tr>
                         
                 ))

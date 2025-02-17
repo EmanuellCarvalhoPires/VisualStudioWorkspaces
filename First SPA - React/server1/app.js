@@ -50,6 +50,24 @@ app.post('/registicket', async (req, res) => {
     }
 })
 
+//ROTA PARA BUSCAR AS INFORMAÇÕES DE UM TICKET
+
+app.get('/DetalhesTicket/:ticket', async (req, res) => {
+    try {
+        const { ticket } = req.params
+        const registro = await Noc.findOne({ ticket: ticket });
+
+        if (!registro) {
+            return res.status(404).json({ message: 'Ticket não encontrado' });
+        }
+
+        res.json(registro)
+    } catch (err) {
+        res.status(500).json({ error: "Erro ao buscar chamados." });
+    }
+})
+
+
 //ROTA PARA LISTAR TODOS OS TICKETS ABERTOS
 
 app.get('/listarTickets', async (req, res) => {

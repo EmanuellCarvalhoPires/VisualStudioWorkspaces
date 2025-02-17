@@ -1,14 +1,19 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import PropTypes from "prop-types"
 
-function Example() {
+
+function Example({ ticket }) {
   const [show, setShow] = useState(false);
-
+  
+  
+  
+  
   return (
     <>
-      <Button variant="dark" id="buttonFechar" onClick={() => setShow(true)}>
-        Detalhes
+      <Button variant="dark" onClick={() => setShow(true)}>
+        Detalhes do Chamado
       </Button>
 
       <Modal
@@ -19,23 +24,29 @@ function Example() {
       >
         <Modal.Header closeButton>
           <Modal.Title id="example-custom-modal-styling-title">
-            Custom Modal Styling
+            Ticket: {ticket.ticket}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>
-            Ipsum molestiae natus adipisci modi eligendi? Debitis amet quae unde
-            commodi aspernatur enim, consectetur. Cumque deleniti temporibus
-            ipsam atque a dolores quisquam quisquam adipisci possimus
-            laboriosam. Quibusdam facilis doloribus debitis! Sit quasi quod
-            accusamus eos quod. Ab quos consequuntur eaque quo rem! Mollitia
-            reiciendis porro quo magni incidunt dolore amet atque facilis ipsum
-            deleniti rem!
-          </p>
+          <p><strong>MVNO:</strong> {ticket.mvno}</p>
+          <p><strong>Prioridade:</strong> {ticket.prioridade}</p>
+          <p><strong>Descrição:</strong> {ticket.descricao}</p>
         </Modal.Body>
       </Modal>
     </>
   );
+
 }
+
+Example.propTypes = { 
+  ticket: PropTypes.shape({
+    ticket: PropTypes.string.isRequired,
+    mvno: PropTypes.string,
+    donofalha: PropTypes.string,
+    prioridade: PropTypes.number,
+    status: PropTypes.bool,
+    descricao: PropTypes.string,
+  }).isRequired,
+};
 
 export default Example;

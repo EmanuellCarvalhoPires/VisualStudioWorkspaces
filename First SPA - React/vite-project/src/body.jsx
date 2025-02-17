@@ -22,7 +22,7 @@ function Body(){
                                             <th>Ticket</th>
                                             <th>MVNO</th>
                                             <th>PRIORIDADE</th>
-                                            <th>Setor Responsável pela Falha</th>
+                                            <th>Setor responsável pela Falha</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
@@ -42,7 +42,7 @@ function Body(){
                                                 <th>Ticket</th>
                                                 <th>MVNO</th>
                                                 <th>PRIORIDADE</th>
-                                                <th>Setor Responsável pela Falha</th>
+                                                <th>Setor responsável pela Falha</th>
                                                 <th>Status</th>
                                             </tr>
                                     </thead>

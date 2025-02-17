@@ -4,7 +4,7 @@ import Example from "./ModalFalha";
 function ListarFalhasFechadas(){
 
     const [ListData, setListData] = useState([]);
-
+    
 
     useEffect(() => {
         fetch("http://localhost:3000/listarTicketsFechados")
@@ -25,7 +25,8 @@ function ListarFalhasFechadas(){
                             <td>{Data.mvno} </td>
                             <td>{Data.prioridade}</td>
                             <td>{Data.donofalha}</td>
-                            <td><div id="statusLinha2">{Data.status == true ? "Aberto" : "Fechado"} <Example/></div></td>
+                            
+                            <td><div id="statusLinha2">{Data.status == true ? "Aberto" : "Fechado"} <Example ticket={Data}/></div></td>
                         </tr>
                         
                 ))
