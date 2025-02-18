@@ -66,3 +66,13 @@ div[id="uncontrolled-tab-example-tabpane-Novo caso"]{
   overflow: auto;
   height: 350px;
 }
+
+/*MODAL*/
+
+#overflow{
+  overflow-wrap: anywhere;
+}
+
+#modals{
+  width: 1000px;
+}

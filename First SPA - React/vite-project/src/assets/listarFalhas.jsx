@@ -9,7 +9,7 @@ function ListarFalhas(){
 
 
     useEffect(() => {
-        fetch("http://localhost:3000/listarTickets")
+        fetch("http://localhost:3000/Falhas/listarTickets")
             .then(response => response.json())
             .then(data => setListData(data))
             .catch((err) => {
@@ -21,7 +21,7 @@ function ListarFalhas(){
 
     function fechar(ticket){
         try{
-            fetch(`http://localhost:3000/AtualizarStatus/${ticket}`, {
+            fetch(`http://localhost:3000/Falhas/AtualizarStatus/${ticket}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ status: false }),

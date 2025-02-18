@@ -54,6 +54,8 @@ function Body(){
                                 </Table>
                             </Tab>
                             <Tab eventKey="Nova falha" title="Adicionar falha" >
+                                
+                                
                                 <FormFalha/>
                             </Tab>
                     </Tabs>

@@ -7,7 +7,7 @@ function ListarFalhasFechadas(){
     
 
     useEffect(() => {
-        fetch("http://localhost:3000/listarTicketsFechados")
+        fetch("http://localhost:3000/Falhas/listarTicketsFechados")
         .then(response => response.json())
         .then(data => setListData(data))
         

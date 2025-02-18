@@ -30,7 +30,7 @@ function FormFalha() {
         
         
         try {
-            const response = await fetch("http://localhost:3000/registicket", {
+            const response = await fetch("http://localhost:3000/Falhas/registicket", {
                 
                 method:"POST",
                 headers: {"Content-Type": "application/json"},
@@ -54,7 +54,9 @@ function FormFalha() {
 
     <div className='CentralDIVForm'>
         <div className='CentralDIVForm2'>
+            
             <Form onSubmit={handleSubmit}>
+
             <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label>MVNO</Form.Label>
@@ -78,7 +80,7 @@ function FormFalha() {
 
             <Form.Group className="mb-3" controlId="formGridAddress1">
                 <Form.Label>Descrição</Form.Label>
-                <Form.Control type='textarea' name="descricao" value={formData.descricao}  onChange={handleChange} required />
+                <Form.Control type='textarea' as="textarea" name="descricao" value={formData.descricao}  onChange={handleChange} required />
                 
             </Form.Group>
 
