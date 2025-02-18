@@ -45,9 +45,28 @@
   background-color: white; /* Fundo permanece branco */
 }
 
+/* TAB DO MODAL */
+
+#uncontrolled-tab-example-tab-home1{
+
+  color: black !important;
+
+}
+
+#uncontrolled-tab-example-tab-profile1  {
+  
+  color: black !important;
+
+}
+
+#uncontrolled-tab-example-tab-contact1{
+
+  color: black !important;
+
+}
+
+
 /*table*/
-
-
 
 div[id="uncontrolled-tab-example-tabpane-Novo caso"]{
   overflow:overlay;
@@ -69,10 +88,35 @@ div[id="uncontrolled-tab-example-tabpane-Novo caso"]{
 
 /*MODAL*/
 
+#ModalTudo{
+  height: 450px;
+}
+
+#ModalBody{
+  height: 450px;
+  overflow: auto;
+}
+
+#ModalHeader{
+  background-color: #D4A017;
+  color: white;
+}
+
+.TituloModal{
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+
 #overflow{
   overflow-wrap: anywhere;
 }
 
 #modals{
   width: 1000px;
+}
+
+#comentários{
+  width: 80%;
+  
 }
