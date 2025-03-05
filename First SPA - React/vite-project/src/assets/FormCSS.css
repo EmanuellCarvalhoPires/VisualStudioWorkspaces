@@ -45,3 +45,23 @@
     white-space: pre-wrap; /* Permite quebras de linha e mantém espaços */
     word-wrap: break-word; /* Quebra palavras longas */
 }
+#gambiarra{
+    display: none;
+}
+
+#tituloTicket{
+    display: flex;
+    justify-content: center;
+    font-size:x-large;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+#hrModal1{
+    margin: 0px;
+}
+
+#hrModal2{
+    margin: 0px;
+    margin-top: -16px;
+}

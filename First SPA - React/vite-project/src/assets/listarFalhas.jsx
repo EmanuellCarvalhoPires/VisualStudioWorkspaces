@@ -26,10 +26,11 @@ function ListarFalhas(){
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ status: false }),
             })
-
+            alert('Falha fechada')
             
         }catch(err){
             console.log(err)
+            alert('Não foi possível fechar a falha')
         }
     }
 

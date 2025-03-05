@@ -11,6 +11,10 @@ const Noc = new Schema({
         required: true
 
     },
+    titulo: {
+        type: String,
+        required: true
+    },
     descricao: {
         type: String,
         require: true

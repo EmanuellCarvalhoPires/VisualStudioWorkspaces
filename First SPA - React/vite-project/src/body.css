@@ -110,6 +110,19 @@ div[id="uncontrolled-tab-example-tabpane-Novo caso"]{
 
 #overflow{
   overflow-wrap: anywhere;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+#overflow2{
+  overflow-wrap: anywhere;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  padding: 10px;
+}
+
+#descricaoContent{
+  padding-left: 20px;
 }
 
 #modals{
@@ -120,3 +133,4 @@ div[id="uncontrolled-tab-example-tabpane-Novo caso"]{
   width: 80%;
   
 }
+

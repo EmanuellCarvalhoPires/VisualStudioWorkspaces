@@ -25,7 +25,6 @@ function ListarFalhasFechadas(){
                             <td>{Data.mvno} </td>
                             <td>{Data.prioridade}</td>
                             <td>{Data.donofalha}</td>
-                            
                             <td><div id="statusLinha2">{Data.status == true ? "Aberto" : "Fechado"} <Example ticket={Data}/></div></td>
                         </tr>
                         

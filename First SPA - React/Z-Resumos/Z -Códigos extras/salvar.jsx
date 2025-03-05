@@ -5,15 +5,14 @@ import PropTypes from "prop-types"
 import Form from 'react-bootstrap/Form';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import ListarComentarios from './listarcomentarios';
 function Example({ ticket }) {
   const [show, setShow] = useState(false);
   
 
   const [comentarioData, setComentarioData] = useState({
-    chamado_id: `${ticket._id}`,
+    id: ticket._id,
     comentario: "",
-    autor:""
+    autor:"",
     
   });
 
@@ -45,14 +44,10 @@ const handleSubmit = async (event) => {
   };
 
 
-
-const descricaoCorreta = ticket.descricao.replace(/\n/g, '<br>')
-
-
+  
+  
 return (
     <>
-
-      <div id="gambiarra" dangerouslySetInnerHTML={{ __html: descricaoCorreta }}></div>
       <Button variant="dark" onClick={() => setShow(true)}>
         Detalhes do Chamado
       </Button>
@@ -77,20 +72,10 @@ return (
           
                 <Tab eventKey="home1" title="Descrição">
                     
-                    <hr id='hrModal2'></hr>
-
-                      <p id="overflow" className='TituloModal'><strong>MVNO: {ticket.mvno}</strong> <strong>Setor: {ticket.donofalha}</strong> <strong>Prioridade: {ticket.prioridade}</strong></p>
-                    
-                    <hr id='hrModal1'></hr>
-                    
+                    <p id="overflow" className='TituloModal'><strong>MVNO: {ticket.mvno}</strong> <strong>Setor: {ticket.donofalha}</strong> <strong>Prioridade: {ticket.prioridade}</strong> </p>  
                     <Modal.Body id="ModalBody">
-                      <div id='tituloTicket'>
-                        <div id='Tituloticket2'>
-                          {ticket.titulo}
-                        </div>
-                      </div>
-                      <p id="overflow2"><strong>Descrição: </strong><p></p> <p id='descricaoContent' dangerouslySetInnerHTML={{ __html: descricaoCorreta }}></p> </p>
                       
+                      <p id="overflow"><strong>Descrição:</strong> {ticket.descricao}</p>
                     </Modal.Body>
 
                 </Tab>
@@ -99,7 +84,7 @@ return (
 
                 <Tab eventKey="profile1" title="Comentários">
 
-                  <listarcomentarios/>
+                  <div>{ticket}</div>
 
                   <Form id="comentários" onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
@@ -133,10 +118,8 @@ return (
 
 Example.propTypes = { 
   ticket: PropTypes.shape({
-    _id: PropTypes.number,
     ticket: PropTypes.string.isRequired,
     mvno: PropTypes.string,
-    titulo: PropTypes.string,
     donofalha: PropTypes.string,
     prioridade: PropTypes.number,
     status: PropTypes.bool,

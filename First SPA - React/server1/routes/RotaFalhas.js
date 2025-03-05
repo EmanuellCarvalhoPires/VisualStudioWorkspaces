@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const Noc = require('../modules/noc')
-
+const Comentarios = require('../modules/comentarios')
 
 //ROTA PARA REGISTRO DE TICKET
 
@@ -83,5 +83,21 @@ router.put('/Falhas/AtualizarStatus/:ticket', async (req, res) => {
         console.log(err);
     }
 })
+
+//ROTA PARA INSERIR UM COMENTARIO NUM TICKET
+
+router.post('/Falhas/regiscoment', async (req, res) => {
+    try {
+        const novoDado = new Comentarios(req.body);
+        await novoDado.save();
+        res.status(201).json({ message: "Dados salvos com sucesso!" });
+
+    } catch (err) {
+        res.status(500).json({ error: "Erro ao salvar os dados." });
+    }
+})
+
+//ROTA PARA BUSCAR OS COMENTÁRIOS DE UM TICKET
+
 
 module.exports = router;

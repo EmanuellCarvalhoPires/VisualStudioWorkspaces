@@ -12,7 +12,8 @@ function FormFalha() {
     const [formData, setFormData] = useState({
         mvno: "",
         ticket: "",
-        descricao: "",
+        titulo:"",
+        descricao: ``,
         prioridade: "",
         donofalha: "",
         status: true
