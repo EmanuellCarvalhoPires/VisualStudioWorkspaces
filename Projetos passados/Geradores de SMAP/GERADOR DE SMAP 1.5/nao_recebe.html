@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Não Recebe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 20px;
+            background-color:#3e4451;
+        }
+
+        #rede2G, #rede3G, #rede4G, #marcar_todas, #teste_sim, #teste_nao {
+            margin: 0;
+            width: fit-content;
+        }
+        #resultado_teste_container{
+            display: none;
+        }
+        #conten{
+
+        margin-top: 30px;
+        margin-bottom: 30px;
+        }
+        #form2 {
+            background-color:#1e2136;
+            margin: 10px;
+            border: 1px solid white;
+            border-radius: 10px;
+            padding-top: 50px;
+            padding-bottom: 20px;
+            padding-left: 70px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, textarea {
+            width: 80%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 10px;
+        }
+
+        #resultado {
+            color: black;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            border: 1px solid;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+
+        /* Esconde o input de resultado por padrão */
+        #resultado_teste_container {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Formulário - Não Recebe</h1>
+    <form id="formulario">
+        <div id="form2">
+            <label for="nome">Nome do contato para realização de testes:</label>
+            <input type="text" id="nome" name="nome">
+
+            <label for="endereco">Endereço completo:</label>
+            <input type="text" id="endereco" name="endereco">
+            <p>--------------------------------------------------------------------------------</p>
+
+            <div id="conten">
+                <label for="todas_as_redes">Todas as redes foram testadas (2G, 3G, 4G)?  <input type="checkbox" id="marcar_todas" name="marcar_todas" onclick="marcarTodasRedes(this)"></label>
+                <br>
+                <label>Quais rede foram testadas? </label>
+                <label for="rede2G">2G:<input type="checkbox" id="rede2G" name="rede2G"></label>
+                <label for="rede3G">3G:<input type="checkbox" id="rede3G" name="rede3G"></label>
+                <label for="rede4G">4G:<input type="checkbox" id="rede4G" name="rede4G"></label>
+
+                <label for="teste_outro_aparelho">Foi testado o chip em outro aparelho?</label>
+                <label>Sim <input type="checkbox" id="teste_sim" name="teste_outro_aparelho" onclick="marcarOutroAparelho('sim')"></label>
+                <label>Não <input type="checkbox" id="teste_nao" name="teste_outro_aparelho" onclick="marcarOutroAparelho('nao')"></label>
+
+                <!-- Este é o container que só aparecerá se "Sim" for selecionado -->
+                <div id="resultado_teste_container">
+                    <label for="resultado_teste">Qual o resultado do teste (se aplicável)?</label>
+                    <input type="text" id="resultado_teste" name="resultado_teste" value="-" class="predefinido">
+                </div>
+            </div>       
+            
+            <p>--------------------------------------------------------------------------------</p>
+
+            <label for="num_exemplo">Número de exemplo que não consegue receber:</label>
+            <input type="text" id="num_exemplo" name="num_exemplo">
+
+            <label for="data_do_problema">Data do problema ocorrido:</label>
+            <input type="text" id="data_do_problema" name="data_do_problema" class="predefinido">
+
+            <label for="mensagem_de_erro">Mensagem de erro:</label>
+            <input type="text" id="mensagem_de_erro" name="mensagem_de_erro">
+
+            <label for="data_dos_testes">Data e hora dos testes realizados:</label>
+            <input type="text" id="data_dos_testes" name="data_dos_testes">
+
+            <label for="saldo_franquia">Saldo/ Franquia:</label>
+            <input type="text" id="saldo_franquia" name="saldo_franquia" value="-" class="predefinido">
+
+            <label for="ICCID">ICCID (caso necessário):</label>
+            <input type="text" id="ICCID" name="ICCID">
+
+            <label for="IMSI">IMSI (caso necessário):</label>
+            <input type="text" id="IMSI" name="IMSI">
+
+            <label for="MSISDN">MSISDN (caso necessário):</label>
+            <input type="text" id="MSISDN" name="MSISDN">
+
+            <label for="modelo_aparelho">Marca e modelo do aparelho:</label>
+            <input type="text" id="modelo_aparelho" name="modelo_aparelho" value="Outros" class="predefinido">
+
+            <label for="info_adicional">Informações adicionais:</label>
+            <textarea id="info_adicional" name="info_adicional"></textarea>
+
+            <button type="button" onclick="gerarTexto()">Gerar Texto</button>
+        </div>
+    </form>
+
+    <div id="resultado"></div>
+
+    <script>
+
+
+
+
+        //-----------------------------------------------------
+        const hoje = new Date();
+
+        // Formata a data como 'dd/mm/aaaa'
+        const dia = String(hoje.getDate()).padStart(2, '0');
+        const mes = String(hoje.getMonth() + 1).padStart(2, '0'); // Mês começa em 0
+        const ano = hoje.getFullYear();
+
+        const dataAtual = `${dia}/${mes}/${ano}`;
+
+        // Define o valor do campo de input como a data atual
+        document.getElementById('data_do_problema').value = dataAtual;
+
+        //-----------------------------------------------------
+        const camposPredefinidos = document.querySelectorAll('.predefinido');
+
+        // Adiciona um evento para cada campo para limpar o valor quando ele é focado
+        camposPredefinidos.forEach(campo => {
+            const valorPredefinido = campo.value;
+
+            campo.addEventListener('focus', function() {
+                if (this.value === valorPredefinido) {
+                    this.value = '';
+                }
+            });
+
+            // Opcional: Se o campo for deixado em branco, redefine o valor predefinido
+            campo.addEventListener('blur', function() {
+                if (this.value === '') {
+                    this.value = valorPredefinido;
+                }
+            });
+        });        
+        //-----------------------------------------------------
+
+
+        function marcarTodasRedes(marcarTodas) {
+            document.getElementById("rede2G").checked = marcarTodas.checked;
+            document.getElementById("rede3G").checked = marcarTodas.checked;
+            document.getElementById("rede4G").checked = marcarTodas.checked;
+        }
+
+        function marcarOutroAparelho(opcao) {
+            if (opcao === 'sim') {
+                document.getElementById("teste_sim").checked = true;
+                document.getElementById("teste_nao").checked = false;
+                document.getElementById("resultado_teste_container").style.display = 'block'; // Exibe o campo de resultado
+            } else {
+                document.getElementById("teste_sim").checked = false;
+                document.getElementById("teste_nao").checked = true;
+                document.getElementById("resultado_teste_container").style.display = 'none'; // Esconde o campo de resultado
+            }
+        }
+
+        function gerarTexto() {
+            const nome = document.getElementById("nome").value || "";
+            const endereco = document.getElementById("endereco").value || "";
+            const todasAsRedes = document.getElementById("marcar_todas").checked;
+            const rede2G = document.getElementById("rede2G").checked ? "*" : "";
+            const rede3G = document.getElementById("rede3G").checked ? "*" : "";
+            const rede4G = document.getElementById("rede4G").checked ? "*" : "";
+
+            const testeOutroAparelhoSim = document.getElementById("teste_sim").checked;
+            const resultadoTeste = document.getElementById("resultado_teste").value || "";
+            const sim = testeOutroAparelhoSim ? "*" : "";
+            const nao = !testeOutroAparelhoSim ? "*" : "";
+
+            const numExemplo = document.getElementById("num_exemplo").value || "";
+            const dataDoProblema = document.getElementById("data_do_problema").value || "";
+            const mensagemDeErro = document.getElementById("mensagem_de_erro").value || "";
+            const dataDosTestes = document.getElementById("data_dos_testes").value || "";
+            const ICCID = document.getElementById("ICCID").value || "";
+            const IMSI = document.getElementById("IMSI").value || "";
+            const MSISDN = document.getElementById("MSISDN").value || "";
+            const modeloAparelho = document.getElementById("modelo_aparelho").value || "";
+            const infoAdicional = document.getElementById("info_adicional").value || "";
+            const saldoFranquia = document.getElementById("saldo_franquia").value || "";
+
+            const textoPronto = `
+Cliente reclama que não está conseguindo receber ligações de qualquer número. (TELECALL)
+A dificuldade ocorre em Local Específico?
+Preencha os Dados abaixo:
+Nome do contato para realização de testes: ${nome}
+Endereço da falha - Rua/Av/Trav: ${endereco}
+Número de Exemplo que não consegue receber: ${numExemplo}
+Data início do problema: ${dataDoProblema}
+Saldo/ Franquia: ${saldoFranquia}
+Dificuldade ocorre em local fechado (dentro da casa) ou externo (rua, parque): Ambos
+Informar mensagem de erro (voz ou texto): ${mensagemDeErro}
+Data e Hora dos testes realizados no local de reclamação: ${dataDosTestes}
+Encontra-se no local?: Sim
+Selecione as redes em que os testes foram realizados:
+2G ( ${rede2G} )  3G  ( ${rede3G} )  4G  ( ${rede4G} )
+Foi testado o chip em outro aparelho? ( ${nao} ) Não ( ${sim} ) Sim. Qual o resultado do teste? ${resultadoTeste}
+Há outra linha com a mesma dificuldade na localidade reclamada? Não
+ICCID: ${ICCID}
+IMSI: ${IMSI}
+MSISDN: ${MSISDN}
+Marca e modelo do aparelho: ${modeloAparelho}
+Informações adicionais que achar necessário: ${infoAdicional}`;
+
+            document.getElementById("resultado").textContent = textoPronto;
+        }
+    </script>
+
+</body>
+</html>
